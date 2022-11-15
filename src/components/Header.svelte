@@ -1,7 +1,16 @@
 <script>
     import NavLinks from "./NavLinks.svelte";
+	import { currentURL } from 'svelte-spa-history-router';
 
 	let mobNavOpen = false;
+	let lastUrl = null;
+
+	$: {
+		if($currentURL.pathname != lastUrl) {
+			lastUrl = $currentURL.pathname;
+			mobNavOpen = false;
+		}
+	}
 </script>
 
 <header>
@@ -46,10 +55,11 @@
 
 	header {
 		background-color: var(--background-color);
-		border-bottom: 1px solid var(--text-color);
+		border-bottom: 1px solid var(--text-color-1);
 		box-shadow: 0 0 5px #0005;
 		padding: 0.5em 1em;
-		position: relative;
+		position: sticky;
+		top: 0;
 		z-index: 100;
 
 		display: flex;
@@ -64,7 +74,7 @@
 
 	nav.mobile {
 		background-color: var(--background-color);
-		border-left: 1px solid var(--text-color);
+		border-left: 1px solid var(--text-color-1);
 		box-shadow: 0 0 5px #0005;
 		padding: 1em 1em 6rem 1em;
 		transition: transform 0.5s;
