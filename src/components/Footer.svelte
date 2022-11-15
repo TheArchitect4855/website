@@ -12,7 +12,7 @@
 <style>
 	footer {
 		background-color: var(--text-color-2);
-		color: var(--background-color);
+		color: var(--background-color-1);
 		font-size: 0.75rem;
 		padding: 0.5rem;
 

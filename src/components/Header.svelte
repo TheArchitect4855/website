@@ -54,7 +54,7 @@
 	}
 
 	header {
-		background-color: var(--background-color);
+		background-color: var(--background-color-1);
 		border-bottom: 1px solid var(--text-color-1);
 		box-shadow: 0 0 5px #0005;
 		padding: 0.5em 1em;
@@ -73,7 +73,7 @@
 	}
 
 	nav.mobile {
-		background-color: var(--background-color);
+		background-color: var(--background-color-1);
 		border-left: 1px solid var(--text-color-1);
 		box-shadow: 0 0 5px #0005;
 		padding: 1em 1em 6rem 1em;

@@ -1,5 +1,8 @@
 :root {
-	--background-color: white;
+	--background-color-1: #fff;
+	--background-color-2: #eee;
+	--background-color-3: #ddd;
+	--background-color-4: #ccc;
 	--text-color-1: #333;
 	--text-color-2: #555;
 	--text-color-3: #777;
@@ -9,12 +12,15 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--background-color: #222;
+		--background-color-1: #222;
+		--background-color-2: #333;
+		--background-color-3: #444;
+		--background-color-4: #555;
 		--text-color-1: #fff;
 		--text-color-2: #ddd;
 		--text-color-3: #bbb;
 		--text-color-4: #999;
-		--hightlight-color: #d70;
+		--highlight-color: #d70;
 	}
 }
 
@@ -23,7 +29,7 @@ a {
 }
 
 body {
-	background-color: var(--background-color);
+	background-color: var(--background-color-1);
 	color: var(--text-color-1);
 	font-family: Lato, sans-serif;
 	margin: 0;
