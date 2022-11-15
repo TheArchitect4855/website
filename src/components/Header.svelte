@@ -3,14 +3,14 @@
 	import { currentURL } from 'svelte-spa-history-router';
 
 	let mobNavOpen = false;
-	let lastUrl = null;
+	currentURL.subscribe(() => {
+		mobNavOpen = false;
+		window.scrollTo(window.scrollX, 0);
+	});
 
-	$: {
-		if($currentURL.pathname != lastUrl) {
-			lastUrl = $currentURL.pathname;
-			mobNavOpen = false;
-		}
-	}
+	document.addEventListener('click', () => {
+		mobNavOpen = false;
+	});
 </script>
 
 <header>
@@ -20,11 +20,14 @@
 	</nav>
 </header>
 
-<nav class={ mobNavOpen ? 'mobile visible' : 'mobile hidden' }>
+<nav class={ mobNavOpen ? 'mobile visible' : 'mobile hidden' } on:click={(e) => e.stopPropagation()} on:keypress={console.dir}>
 	<NavLinks />
 </nav>
 
-<button class="mobile" on:click={() => mobNavOpen = !mobNavOpen}>
+<button class="mobile" on:click={(e) => {
+	e.stopPropagation();
+	mobNavOpen = !mobNavOpen
+}}>
 	{#if mobNavOpen}
 		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon">
 			<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />

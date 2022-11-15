@@ -1,5 +1,5 @@
 <script>
-	import { Router } from 'svelte-spa-history-router';
+	import { currentURL, Router } from 'svelte-spa-history-router';
     import Footer from './components/Footer.svelte';
     import Header from './components/Header.svelte';
     import Blog from './pages/Blog.svelte';
