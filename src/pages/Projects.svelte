@@ -2,6 +2,10 @@
 	import projects from "../assets/projects.json";
 </script>
 
+<svelte:head>
+	<title>Kurtis Knodel // Projects</title>
+</svelte:head>
+
 <main>
 	<h2>Projects</h2>
 	<div class="container">

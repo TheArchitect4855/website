@@ -2,6 +2,10 @@
     import { link } from "svelte-spa-history-router";
 
 </script>
+<svelte:head>
+	<title>Kurtis Knodel // Nowhere</title>
+</svelte:head>
+
 <main class="container">
 	<h1>There's nothing here.</h1>
 	<h3>Perhaps you got lost...</h3>

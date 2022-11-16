@@ -59,3 +59,7 @@ main {
 	min-height: 100vh;
 	padding: 1em;
 }
+
+small {
+	font-size: 0.75em;
+}

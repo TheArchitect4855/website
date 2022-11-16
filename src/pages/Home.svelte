@@ -1,3 +1,20 @@
+<script>
+    import { onMount } from "svelte";
+    import PostPreview from "../components/PostPreview.svelte";
+	import * as requests from '../lib/requests';
+
+	let latestPost = null;
+	onMount(load);
+	async function load() {
+		const res = await requests.get('/blog', { limit: 1 });
+		latestPost = res[0];
+	}
+</script>
+
+<svelte:head>
+	<title>Kurtis Knodel // Home</title>
+</svelte:head>
+
 <main>
 	<h2>Welcome!</h2>
 	<p>
@@ -9,6 +26,9 @@
 	<hr />
 	<h2>The Latest from Me</h2>
 	<iframe width="100%" src="https://www.youtube-nocookie.com/embed/S8n3ywvMdW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	{#if latestPost}
+		<PostPreview data={ latestPost } />
+	{/if}
 </main>
 
 <style>

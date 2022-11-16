@@ -10,6 +10,10 @@
 </footer>
 
 <style>
+	a {
+		color: var(--background-color-4);
+	}
+
 	footer {
 		background-color: var(--text-color-2);
 		color: var(--background-color-1);

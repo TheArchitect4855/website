@@ -14,6 +14,8 @@
 		"vite": "^3.2.3"
 	},
 	"dependencies": {
+		"@types/marked": "^4.0.7",
+		"marked": "^4.2.2",
 		"svelte-spa-history-router": "^2.1.0"
 	}
 }
