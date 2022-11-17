@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from 'svelte';
 	import { Router } from 'svelte-spa-history-router';
     import Footer from './components/Footer.svelte';
     import Header from './components/Header.svelte';
@@ -8,8 +7,8 @@
 	import Home from './pages/Home.svelte';
     import NotFound from './pages/NotFound.svelte';
     import Projects from './pages/Projects.svelte';
-	import * as requests from './lib/requests';
     import Post from './pages/Post.svelte';
+	import * as requests from './lib/requests';
 
 	const routes = [
 		{ path: '/', component: Home },
@@ -19,14 +18,6 @@
 		{ path: '/contact', component: Contact },
 		{ path: '/.+', component: NotFound },
 	];
-
-	onMount(() => {
-		load();
-	});
-
-	async function load() {
-		requests.get('/session', {});
-	}
 </script>
 
 <Header />

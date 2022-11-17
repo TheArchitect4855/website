@@ -2,6 +2,12 @@ import getCookie from './cookies';
 
 const api = getApi();
 
+let session: Promise<Response> = fetch(`${api}/session`, {
+	credentials: 'include',
+	mode: 'cors',
+	method: 'GET',
+});
+
 export function post(path: string, args: any): Promise<any> {
 	return doRequest('POST', path, args);
 }
@@ -24,6 +30,7 @@ export function del(path: string, args: any): Promise<any> {
 
 async function doRequest(method: string, path: string, body: any): Promise<any> {
 	try {
+		await session; // Make sure we have a session before doing any requests
 		const jsonBody = body === null ? null : JSON.stringify(body);
 		const res = await fetch(api + path, {
 			body: jsonBody,
