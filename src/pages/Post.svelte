@@ -3,6 +3,7 @@
 	import { link, routeParams } from "svelte-spa-history-router";
 	import * as requests from '../lib/requests';
 	import * as marked from 'marked';
+    import Spinner from "../components/Spinner.svelte";
 
 	let id = $routeParams.id;
 	let data = null;
@@ -30,6 +31,6 @@
 		<div>{@html data.content }</div>
 		<a href="/blog" use:link>Back</a>
 	{:else}
-		<i>Loading...</i>
+		<Spinner />
 	{/if}
 </main>

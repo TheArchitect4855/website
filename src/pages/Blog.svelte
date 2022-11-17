@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import PostPreview from "../components/PostPreview.svelte";
+    import Spinner from "../components/Spinner.svelte";
 	import * as requests from '../lib/requests';
 
 	let posts = null;
@@ -24,6 +25,6 @@
 	{:else if posts}
 		<p>There's nothing here... 🦗</p>
 	{:else}
-		<i>Loading...</i>
+		<Spinner />
 	{/if}
 </main>
