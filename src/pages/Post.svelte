@@ -9,7 +9,6 @@
 	let data = null;
 	onMount(load);
 	async function load() {
-		console.log('ON MOUNT');
 		data = await requests.get(`/blog/${id}`, {});
 		data.content = marked.parse(data.content.replace(/</g, '&lt;').replace(/>/g, '&gt;'));
 	}

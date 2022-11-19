@@ -82,6 +82,7 @@
 		padding: 1em 1em 6rem 1em;
 		transition: transform 0.5s;
 		width: 50vw;
+		z-index: 50;
 
 		display: flex;
 		justify-content: flex-end;
@@ -103,10 +104,12 @@
 	}
 
 	button.mobile {
-		background-color: var(--highlight-color);
+		border: none;
 		border-radius: 50%;
 		box-shadow: 0 0 5px #0005;
 		cursor: pointer;
+		padding: 0;
+		z-index: 150;
 
 		position: fixed;
 		right: 2rem;

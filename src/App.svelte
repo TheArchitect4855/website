@@ -8,7 +8,9 @@
     import NotFound from './pages/NotFound.svelte';
     import Projects from './pages/Projects.svelte';
     import Post from './pages/Post.svelte';
-	import * as requests from './lib/requests';
+    import Admin from './pages/Admin.svelte';
+    import AdminLogin from './pages/admin/Login.svelte';
+	import Login from './pages/Login.svelte';
 
 	const routes = [
 		{ path: '/', component: Home },
@@ -16,6 +18,9 @@
 		{ path: '/blog/(?<id>.+)' , component: Post },
 		{ path: '/projects', component: Projects },
 		{ path: '/contact', component: Contact },
+		{ path: '/admin', component: Admin },
+		{ path: '/admin/login', component: AdminLogin },
+		{ path: '/login/(?<id>.+)', component: Login },
 		{ path: '/.+', component: NotFound },
 	];
 </script>
