@@ -3,6 +3,8 @@
 	import * as router from 'svelte-spa-history-router';
 	import * as requests from '../lib/requests';
 
+	export let sessionData;
+
 	onMount(async () => {
 		let session = localStorage.getItem('admin-session-id');
 		if(!session) {
@@ -18,6 +20,6 @@
 			return;
 		}
 
-		sessionStorage.setItem('admin-session-data', JSON.stringify(res));
+		sessionData = res;
 	});
 </script>

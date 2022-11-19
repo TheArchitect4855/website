@@ -31,11 +31,21 @@ export function del(path: string, args: any): Promise<any> {
 async function doRequest(method: string, path: string, body: any): Promise<any> {
 	try {
 		await session; // Make sure we have a session before doing any requests
+		const adminSession = localStorage.getItem('admin-session-id');
+		const headers = {
+			'Content-Type': 'application/json',
+		};
+
+		if(adminSession) {
+			headers['Authorization'] = `Bearer ${adminSession}`;
+		}
+
 		const jsonBody = body === null ? null : JSON.stringify(body);
 		const res = await fetch(api + path, {
 			body: jsonBody,
 			credentials: 'include',
 			mode: 'cors',
+			headers,
 			method,
 		});
 

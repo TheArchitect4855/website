@@ -10,7 +10,7 @@
 	<h2>Projects</h2>
 	<div class="container">
 		{#each projects as proj}
-			<article>
+			<article class="float-hover">
 				<h3>{ proj.title }</h3>
 				<p>{ proj.description }</p>
 				<a href={ proj.link } target="_blank" rel="noreferrer">Project Link</a>
@@ -31,12 +31,6 @@
 		border-radius: 8px;
 		box-shadow: 0 0 0 #0005;
 		padding: 1em;
-		transition: box-shadow 0.2s, transform 0.2s;
-	}
-
-	article:hover {
-		box-shadow: 0 0 10px #0005;
-		transform: scale(1.1);
 	}
 
 	article > h3 {
