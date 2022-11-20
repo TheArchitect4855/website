@@ -8,7 +8,7 @@
 	onMount(load);
 	async function load() {
 		const res = await requests.get('/blog', { limit: 1 });
-		latestPost = res[0];
+		latestPost = res.list[0];
 	}
 </script>
 

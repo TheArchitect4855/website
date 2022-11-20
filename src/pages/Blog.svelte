@@ -18,8 +18,8 @@
 
 <main>
 	<h2>Blog</h2>
-	{#if posts && posts.length > 0}
-		{#each posts as post}
+	{#if posts && posts.list.length > 0}
+		{#each posts.list as post}
 			<PostPreview data={ post } />
 		{/each}
 	{:else if posts}

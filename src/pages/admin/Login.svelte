@@ -6,6 +6,7 @@
 	async function login(e) {
 		e.preventDefault();
 
+		canSubmit = false;
 		const email = document.querySelector('#email-input').value;
 		const res = await requests.post('/admin/session', {
 			email,
@@ -13,10 +14,10 @@
 
 		if(res?.error) {
 			message = res.error;
+			canSubmit = true;
 			return;
 		}
 
-		canSubmit = false;
 		message = 'Login link sent';
 	}
 </script>
