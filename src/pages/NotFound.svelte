@@ -6,7 +6,7 @@
 	<title>Kurtis Knodel // Nowhere</title>
 </svelte:head>
 
-<main class="container">
+<main>
 	<h1>There's nothing here.</h1>
 	<h3>Perhaps you got lost...</h3>
 	<a href="/" use:link>Take me Home</a>

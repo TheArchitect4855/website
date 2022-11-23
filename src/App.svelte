@@ -11,6 +11,7 @@
     import Admin from './pages/Admin.svelte';
     import AdminLogin from './pages/admin/Login.svelte';
 	import Login from './pages/Login.svelte';
+	import AdminAnalytics from './pages/admin/Analytics.svelte';
 
 	const routes = [
 		{ path: '/', component: Home },
@@ -20,6 +21,7 @@
 		{ path: '/contact', component: Contact },
 		{ path: '/admin', component: Admin },
 		{ path: '/admin/login', component: AdminLogin },
+		{ path: '/admin/analytics', component: AdminAnalytics },
 		{ path: '/login/(?<id>.+)', component: Login },
 		{ path: '/.+', component: NotFound },
 	];
