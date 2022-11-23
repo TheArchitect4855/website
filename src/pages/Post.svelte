@@ -25,7 +25,15 @@
 <main>
 	{#if data}
 		<h2>{ data.title }</h2>
-		<small>By { data.author } | Posted { new Date(data.posted).toLocaleString() } | { data.views } views</small>
+		<small>
+			By { data.author } |
+			{#if data.posted}
+				Posted { new Date(data.posted).toLocaleString() } 
+			{:else}
+				Created { new Date(data.created).toLocaleString() } | Private
+			{/if}
+			| { data.views } views
+		</small>
 		<hr />
 		<div>{@html data.content }</div>
 		<a href="/blog" use:link>Back</a>

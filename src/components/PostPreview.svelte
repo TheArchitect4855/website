@@ -7,7 +7,14 @@
 <article class="float-hover">
 	<h3>{ data.title }</h3>
 	<p>{ data.content }</p>
-	<small>Posted { new Date(data.posted).toLocaleDateString() } | { data.views } views</small>
+	<small>
+		{#if data.posted}
+			Posted { new Date(data.posted).toLocaleDateString() }
+		{:else}
+			Created { new Date(data.created).toLocaleDateString() } | Private
+		{/if}
+		| { data.views } views
+	</small>
 	<br />
 	<a href={ `/blog/${data.ext_id}` } use:link>Read More</a>
 </article>

@@ -78,7 +78,7 @@ hr {
 	border-bottom: 1px solid var(--text-color-4);
 }
 
-input {
+input, textarea {
 	background-color: var(--background-color-2);
 	border: 1px solid var(--background-color-4);
 	color: var(--text-color-2);
