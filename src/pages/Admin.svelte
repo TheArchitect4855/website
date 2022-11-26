@@ -94,7 +94,7 @@
 			</div>
 			<a href="/blog" target="_blank" rel="noreferrer" use:router.link>View All</a>
 			<br />
-			<a href="/admin/new-post" use:router.link>Create Post</a>
+			<a href="/admin/blog/new" use:router.link>Create Post</a>
 		</section>
 
 		{#if sessionData?.is_root}

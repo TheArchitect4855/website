@@ -17,6 +17,9 @@
 	</small>
 	<br />
 	<a href={ `/blog/${data.ext_id}` } use:link>Read More</a>
+	{#if localStorage.getItem('admin-session-id')}
+		<a href={ `/admin/blog/edit?id=${data.ext_id}` } use:link>Edit</a>
+	{/if}
 </article>
 
 <style>

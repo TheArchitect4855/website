@@ -13,6 +13,7 @@
 	import Login from './pages/Login.svelte';
 	import AdminAnalytics from './pages/admin/Analytics.svelte';
 	import AdminNewPost from './pages/admin/NewPost.svelte';
+	import AdminEditPost from './pages/admin/EditPost.svelte';
 
 	const routes = [
 		{ path: '/', component: Home },
@@ -23,7 +24,8 @@
 		{ path: '/admin', component: Admin },
 		{ path: '/admin/login', component: AdminLogin },
 		{ path: '/admin/analytics', component: AdminAnalytics },
-		{ path: '/admin/new-post', component: AdminNewPost },
+		{ path: '/admin/blog/new', component: AdminNewPost },
+		{ path: '/admin/blog/edit', component: AdminEditPost },
 		{ path: '/login/(?<id>.+)', component: Login },
 		{ path: '/.+', component: NotFound },
 	];
