@@ -23,7 +23,7 @@
 	}
 
 	async function deleteAccount() {
-		if(!confirm('Are you sure you want to DELETE your account? This cannot be undone.')) return;
+		if(!confirm(`Are you sure you want to DELETE ${ name }? This cannot be undone.`)) return;
 
 		busy = true;
 		const acctId = encodeURIComponent(data.id);
