@@ -1,7 +1,14 @@
 <script>
     import { link } from "svelte-spa-history-router";
+	import * as requests from '../lib/requests';
 
 	export let data;
+
+	async function deletePost() {
+		if(!confirm(`Are you sure you want to delete ${data.title}? This cannot be undone!`)) return;
+		await requests.del(`/blog/${data.ext_id}`, {});
+		window.location.reload();
+	}
 </script>
 
 <article class="float-hover">
@@ -18,7 +25,8 @@
 	<br />
 	<a href={ `/blog/${data.ext_id}` } use:link>Read More</a>
 	{#if localStorage.getItem('admin-session-id')}
-		<a href={ `/admin/blog/edit?id=${data.ext_id}` } use:link>Edit</a>
+		&nbsp;<a href={ `/admin/blog/edit?id=${data.ext_id}` } use:link>Edit</a>
+		&nbsp;<button class="link" on:click={ deletePost }>Delete</button>
 	{/if}
 </article>
 
