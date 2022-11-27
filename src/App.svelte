@@ -1,5 +1,6 @@
 <script>
-	import { Router } from 'svelte-spa-history-router';
+	import { currentURL, Router } from 'svelte-spa-history-router';
+	import * as analytics from './lib/analytics';
     import Footer from './components/Footer.svelte';
     import Header from './components/Header.svelte';
     import Blog from './pages/Blog.svelte';
@@ -31,6 +32,13 @@
 		{ path: '/login/(?<id>.+)', component: Login },
 		{ path: '/.+', component: NotFound },
 	];
+
+	let currentPage = null;
+	currentURL.subscribe((v) => {
+		if(currentPage) analytics.leavePage(currentPage);
+		analytics.viewPage(v.pathname, document.referrer);
+		currentPage = v.pathname;
+	});
 </script>
 
 <Header />

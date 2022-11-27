@@ -1,7 +1,6 @@
 <script>
     import { onMount } from "svelte";
     import PostPreview from "../components/PostPreview.svelte";
-    import Spinner from "../components/Spinner.svelte";
 	import * as requests from '../lib/requests';
 
 	let latestPost = null;
