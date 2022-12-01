@@ -75,5 +75,5 @@ function createUrlArgs(path: string, args: object): string {
 }
 
 export function getApi(): string {
-	return getCookie('api') ?? 'https://api.kurtisknodel.com:8080';
+	return getCookie('api') ?? 'https://api.kurtisknodel.com';
 }
