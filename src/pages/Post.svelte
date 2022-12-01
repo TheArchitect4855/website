@@ -4,6 +4,7 @@
 	import * as requests from '../lib/requests';
 	import * as marked from 'marked';
     import Spinner from "../components/Spinner.svelte";
+	import { toHumanReadable } from "../lib/strings";
 
 	let id = $routeParams.id;
 	let data = null;
@@ -32,7 +33,7 @@
 			{:else}
 				Created { new Date(data.created).toLocaleString() } | Private
 			{/if}
-			| { data.views } views
+			| { toHumanReadable(data.views) } views
 		</small>
 		<hr />
 		<div>{@html data.content }</div>

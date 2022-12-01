@@ -1,5 +1,6 @@
 <script>
     import { link } from "svelte-spa-history-router";
+	import { toHumanReadable } from "../lib/strings";
 	import * as requests from '../lib/requests';
 
 	export let data;
@@ -20,7 +21,7 @@
 		{:else}
 			Created { new Date(data.created).toLocaleDateString() } | Private
 		{/if}
-		| { data.views } views
+		| { toHumanReadable(data.views) } views
 	</small>
 	<br />
 	<a href={ `/blog/${data.ext_id}` } use:link>Read More</a>
