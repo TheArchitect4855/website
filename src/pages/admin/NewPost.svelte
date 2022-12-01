@@ -3,7 +3,9 @@
 	import * as requests from '../../lib/requests';
 	import * as router from 'svelte-spa-history-router';
     import PostEditor from "../../components/PostEditor.svelte";
+    import AdminGuard from "../../components/AdminGuard.svelte";
 
+	let sessionData;
 	let postTitle = '';
 	let postMarkdown = '';
 	let postHtml = '';
@@ -21,6 +23,7 @@
 	}
 </script>
 
+<AdminGuard bind:sessionData />
 <main>
 	<h2>Create Post</h2>
 	<PostEditor bind:postTitle bind:postMarkdown />

@@ -1,5 +1,6 @@
 import getCookie from './cookies';
 
+const json = 'application/json';
 const api = getApi();
 
 let session: Promise<Response> = fetch(`${api}/session`, {
@@ -9,42 +10,45 @@ let session: Promise<Response> = fetch(`${api}/session`, {
 });
 
 export function post(path: string, args: any): Promise<any> {
-	return doRequest('POST', path, args);
+	return doRequest('POST', path, JSON.stringify(args), json);
 }
 
 export function get(path: string, args: object): Promise<any> {
-	return doRequest('GET', createUrlArgs(path, args), null);
+	return doRequest('GET', createUrlArgs(path, args), null, json);
 }
 
 export function patch(path: string, args: any): Promise<any> {
-	return doRequest('PATCH', path, args);
+	return doRequest('PATCH', path, JSON.stringify(args), json);
 }
 
 export function put(path: string, args: any): Promise<any> {
-	return doRequest('PUT', path, args);
+	return doRequest('PUT', path, JSON.stringify(args), json);
 }
 
 export function del(path: string, args: any): Promise<any> {
-	return doRequest('DELETE', createUrlArgs(path, args), null);
+	return doRequest('DELETE', createUrlArgs(path, args), null, json);
 }
 
-async function doRequest(method: string, path: string, body: any): Promise<any> {
+export function upload(path: string, file: File): Promise<any> {
+	return doRequest('POST', path, file, file.type);
+}
+
+async function doRequest(method: string, path: string, body: any, contentType: string): Promise<any> {
 	try {
 		await session; // Make sure we have a session before doing any requests
 		const adminSession = localStorage.getItem('admin-session-id');
 		const headers = {
-			'Content-Type': 'application/json',
+			'Content-Type': contentType,
 		};
 
 		if(adminSession) {
 			headers['Authorization'] = `Bearer ${adminSession}`;
 		}
 
-		const jsonBody = body === null ? null : JSON.stringify(body);
 		const res = await fetch(api + path, {
-			body: jsonBody,
 			credentials: 'include',
 			mode: 'cors',
+			body,
 			headers,
 			method,
 		});
@@ -70,6 +74,6 @@ function createUrlArgs(path: string, args: object): string {
 	return `${path}?${params}`;
 }
 
-function getApi(): string {
-	return getCookie('api') ?? 'http://localhost:8000';
+export function getApi(): string {
+	return getCookie('api') ?? 'https://api.kurtisknodel.com:8080';
 }
