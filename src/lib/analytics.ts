@@ -13,7 +13,7 @@ export async function leavePage(path: string): Promise<void> {
 }
 
 export async function viewPage(path: string, referrer: string): Promise<void> {
-	track('view-page', path, { referrer });
+	track('view_page', path, { referrer });
 }
 
 async function track(action: string, path: string, data: object): Promise<void> {
