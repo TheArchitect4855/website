@@ -118,3 +118,18 @@ main {
 small {
 	font-size: 0.75em;
 }
+
+table.analytics {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table.analytics td, table.analytics th {
+	border-bottom: 1px solid var(--background-color-2);
+	padding: 0.5em 0;
+	text-align: left;
+}
+
+table.analytics td.num, table.analytics th.num {
+	text-align: right;
+}
