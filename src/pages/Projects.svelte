@@ -4,6 +4,7 @@
 
 <svelte:head>
 	<title>Kurtis Knodel // Projects</title>
+	<meta name="description" content="Check out my projects!" />
 </svelte:head>
 
 <main>

@@ -1,5 +1,6 @@
 <svelte:head>
-	Kurtis Knodel // Contact
+	<title>Kurtis Knodel // Contact</title>
+	<meta name="description" content="For any questions, comments, or concerns, please contact me." />
 </svelte:head>
 
 <main>

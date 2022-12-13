@@ -1,7 +1,7 @@
 <script>
-    import { onMount } from "svelte";
-    import PostPreview from "../components/PostPreview.svelte";
-    import Spinner from "../components/Spinner.svelte";
+	import { onMount } from "svelte";
+	import PostPreview from "../components/PostPreview.svelte";
+	import Spinner from "../components/Spinner.svelte";
 	import * as requests from '../lib/requests';
 
 	let posts = null;
@@ -14,6 +14,7 @@
 
 <svelte:head>
 	<title>Kurtis Knodel // Blog</title>
+	<meta name="description" content="See my latest blog posts about computer science, tech, and random cool things." />
 </svelte:head>
 
 <main>

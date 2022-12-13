@@ -1,6 +1,6 @@
 <script>
-    import { onMount } from "svelte";
-    import PostPreview from "../components/PostPreview.svelte";
+	import { onMount } from "svelte";
+	import PostPreview from "../components/PostPreview.svelte";
 	import * as requests from '../lib/requests';
 
 	let latestPost = null;
@@ -13,6 +13,7 @@
 
 <svelte:head>
 	<title>Kurtis Knodel // Home</title>
+	<meta name="description" content="Welcome! I'm Kurtis. I am a skilled software developer who is always trying to learn something new." />
 </svelte:head>
 
 <main>

@@ -1,9 +1,10 @@
 <script>
-    import { link } from "svelte-spa-history-router";
-
+	import { link } from "svelte-spa-history-router";
 </script>
+
 <svelte:head>
 	<title>Kurtis Knodel // Nowhere</title>
+	<meta name="robots" content="noindex" />
 </svelte:head>
 
 <main>

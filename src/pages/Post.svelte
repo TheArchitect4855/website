@@ -1,9 +1,9 @@
 <script>
-    import { onMount } from "svelte";
+	import { onMount } from "svelte";
 	import { link, routeParams } from "svelte-spa-history-router";
 	import * as requests from '../lib/requests';
 	import * as marked from 'marked';
-    import Spinner from "../components/Spinner.svelte";
+	import Spinner from "../components/Spinner.svelte";
 	import { toHumanReadable } from "../lib/strings";
 
 	let id = $routeParams.id;
@@ -18,6 +18,7 @@
 <svelte:head>
 	{#if data}
 		<title>Kurtis Knodel // { data.title }</title>
+		<meta name="description" content={ data.content } />
 	{:else}
 		<title>Kurtis Knodel // Blog</title>
 	{/if}
