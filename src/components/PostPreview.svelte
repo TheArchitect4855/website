@@ -1,5 +1,5 @@
 <script>
-    import { link } from "svelte-spa-history-router";
+	import { link } from "svelte-spa-history-router";
 	import { toHumanReadable } from "../lib/strings";
 	import * as requests from '../lib/requests';
 
@@ -7,7 +7,7 @@
 
 	async function deletePost() {
 		if(!confirm(`Are you sure you want to delete ${data.title}? This cannot be undone!`)) return;
-		await requests.del(`/blog/${data.ext_id}`, {});
+		await requests.del(`/blog/${data.id}`, {});
 		window.location.reload();
 	}
 </script>
@@ -24,9 +24,9 @@
 		| { toHumanReadable(data.views) } views
 	</small>
 	<br />
-	<a href={ `/blog/${data.ext_id}` } use:link>Read More</a>
+	<a href={ `/blog/${data.id}` } use:link>Read More</a>
 	{#if localStorage.getItem('admin-session-id')}
-		&nbsp;<a href={ `/admin/blog/edit?id=${data.ext_id}` } use:link>Edit</a>
+		&nbsp;<a href={ `/admin/blog/edit?id=${data.id}` } use:link>Edit</a>
 		&nbsp;<button class="link" on:click={ deletePost }>Delete</button>
 	{/if}
 </article>
