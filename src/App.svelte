@@ -16,10 +16,16 @@
 	import AdminNewPost from './pages/admin/NewPost.svelte';
 	import AdminEditPost from './pages/admin/EditPost.svelte';
 	import AdminManageAccounts from './pages/admin/ManageAccounts.svelte';
+    import Redirect from './components/Redirect.svelte';
 
 	const routes = [
 		{ path: '/', component: Home },
 		{ path: '/blog', component: Blog },
+
+		// Blog redirects
+		{ path: '/blog/ExQJVSoi7zhLSFVpr1_BEwfb3xup9dFnGIR2Jy0otXw=', resolver: redirectResolver('/blog/WrhAGKfvQEuuwWyHpGHWyQ') },
+		{ path: '/blog/1Z7fBnGTIlOklNRJ0_nDXnANHcPRYSmRyakATw6lDts', resolver: redirectResolver('/blog/XaQDp4FqRwea7aw0ylgPog') },
+
 		{ path: '/blog/(?<id>.+)' , component: Post },
 		{ path: '/projects', component: Projects },
 		{ path: '/contact', component: Contact },
@@ -30,6 +36,8 @@
 		{ path: '/admin/blog/edit', component: AdminEditPost },
 		{ path: '/admin/manage-accounts', component: AdminManageAccounts },
 		{ path: '/login/(?<id>.+)', component: Login },
+
+		// Not found
 		{ path: '/.+', component: NotFound },
 	];
 
@@ -39,6 +47,13 @@
 		analytics.viewPage(v.pathname, document.referrer);
 		currentPage = v.pathname;
 	});
+
+	function redirectResolver(to) {
+		return (route) => {
+			route.props.to = to;
+			return Redirect;
+		};
+	}
 </script>
 
 <Header />
