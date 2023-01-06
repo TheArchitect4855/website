@@ -21,8 +21,7 @@
 	<p>
 		I'm Kurtis. I am a skilled software developer who is always trying to learn something new.
 		I have been programming since I was 11 years old, and throughout this time I have learned
-		a lot about the field. I am currently taking freelance contracts, so if you need something
-		done please <a href="mailto:kurtis@kurtisknodel.com?subject=Freelance%20Work">let me know</a>.
+		a lot about the field. Currently CEO of <a href="https://kitservices.dev" target="_blank" rel="noreferrer">kIT Services</a>.
 	</p>
 	<hr />
 	<h2>The Latest from Me</h2>
