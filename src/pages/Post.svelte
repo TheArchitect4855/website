@@ -11,7 +11,7 @@
 	onMount(load);
 	async function load() {
 		data = await requests.get(`/blog/${id}`, {});
-		data.content = marked.parse(data.content.replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+		data.content = marked.parse(data.content);
 	}
 </script>
 

@@ -22,7 +22,7 @@
 	async function save() {
 		if(!confirm('Save changes?')) return;
 
-		await requests.patch(`/blog/${postData.ext_id}`, {
+		await requests.patch(`/blog/${postData.id}`, {
 			title: postData.title,
 			content: postData.content,
 			is_public: isPublic,
