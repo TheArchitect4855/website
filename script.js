@@ -62,30 +62,38 @@ function animateText() {
 
 async function initBlogList(json) {
 	const content = document.querySelector('#blog>.content');
-	const latestContent = document.querySelector('#latest .blog-post');
-	const postContent = await Promise.all(json.map((e) => fetch(`/blog/${e.id}.html`).then((e) => e.text())));
-	for (let i = 0; i < postContent.length; i += 1) {
-		const preview = document.createElement('div');
-		preview.innerHTML = postContent[i];
+	json.map((e) => fetch(`/blog/${e.id}.html`)
+		.then((req) => req.text())
+		.then((post) => {
+			const preview = document.createElement('div');
+			preview.innerHTML = post;
 
-		const previewText = preview.innerText;
-		if (previewText.length > 200) preview.innerText = previewText.substring(0, 197) + '...';
+			const previewText = preview.innerText;
+			if (previewText.length > 200) preview.innerText = previewText.substring(0, 197) + '...';
 
-		const article = document.createElement('article');
-		article.innerHTML = `
-			<h3>${json[i].title}</h3>
-			<div>${preview.innerText}</div>
-			<a href="${window.origin}/blog.html?post=${encodeURIComponent(json[i].id)}">Read More</a>
-		`;
+			const article = document.createElement('article');
+			article.innerHTML = `
+				<h3>${e.title}</h3>
+				<div>${preview.innerText}</div>
+				<a href="${window.origin}/blog.html?post=${encodeURIComponent(e.id)}">Read More</a>
+			`;
 
-		content.appendChild(article);
-		if (i == 0) latestContent.appendChild(article.cloneNode(true));
-	}
+			content.appendChild(article);
+		})
+		.catch(console.error)
+	);
+}
+
+async function initMotd() {
+	const list = await fetch('/motd.json').then((e) => e.json());
+	const index = Math.floor(Date.now() / 86_400_000) % list.length;
+	document.querySelector('#motd').innerText = list[index];
 }
 
 function initUi() {
 	const frac = Date.now() % 1000;
 	setTimeout(() => setInterval(tick, tickInterval), frac);
+	initMotd();
 }
 
 function onHashChanged() {
@@ -110,7 +118,7 @@ function onKeyDown(e) {
 		// Down
 		if (selectedMenuItem?.nextElementSibling) next = selectedMenuItem.nextElementSibling;
 		else next = document.querySelector('nav li:first-child');
-	}
+	} else return;
 
 	window.location.hash = next.firstElementChild.hash;
 }
