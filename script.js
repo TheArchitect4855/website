@@ -62,7 +62,7 @@ function animateText() {
 
 async function initBlogList(json) {
 	const content = document.querySelector('#blog>.content');
-	json.map((e) => fetch(`/blog/${e.id}.html`)
+	json.map((e) => fetch(`/blog/${e.id}`)
 		.then((req) => req.text())
 		.then((post) => {
 			const preview = document.createElement('div');
@@ -75,7 +75,7 @@ async function initBlogList(json) {
 			article.innerHTML = `
 				<h3>${e.title}</h3>
 				<div>${preview.innerText}</div>
-				<a href="${window.origin}/blog.html?post=${encodeURIComponent(e.id)}">Read More</a>
+				<a href="${window.origin}/blog?post=${encodeURIComponent(e.id)}">Read More</a>
 			`;
 
 			content.appendChild(article);
