@@ -86,7 +86,7 @@ async function initBlogList(json) {
 
 async function initMotd() {
 	const list = await fetch('/motd.json').then((e) => e.json());
-	const index = Math.floor(Date.now() / 86_400_000) % list.length;
+	const index = Math.floor(Date.now() / 1000 / secondsPerRotation) % list.length;
 	document.querySelector('#motd').innerText = list[index];
 }
 
@@ -133,9 +133,8 @@ function tick() {
 }
 
 function tickNeodate(now) {
-	const revolution = Math.floor(now / secondsPerRevolution);
-	const rotation = Math.floor(now / secondsPerRotation);
-	if (revolution < 0) {
+	if (now < 0) {
+		const rotation = Math.floor(now / secondsPerRotation);
 		const timeOfDay = ((now / secondsPerRotation - rotation) * 100).toFixed(2).padStart(5, '0');
 		const neodateText = `${timeOfDay} ${Math.abs(rotation)}R <O`;
 		if (neodateText != neodate.innerText) neodate.innerText = neodateText;
@@ -143,11 +142,12 @@ function tickNeodate(now) {
 	}
 
 	const timeOfDay = (now % secondsPerRotation / secondsPerRotation * 100).toFixed(2).padStart(5, '0');
+	const revolution = Math.floor(now / secondsPerRevolution);
 	const quarter = Math.floor(now / secondsPerQuarter);
 	const rotationOfQuarter = Math.ceil((now - quarter * secondsPerQuarter) / secondsPerRotation);
 	const quarterOfRevolution = Math.ceil((now - revolution * secondsPerRevolution) / secondsPerQuarter);
 
-	const neodateText = `${timeOfDay} ${rotationOfQuarter}R /${quarterOfRevolution}Q /R${revolution}`;
+	const neodateText = `${timeOfDay} ${rotationOfQuarter}R/${quarterOfRevolution}Q/R${revolution + 1}`;
 	if (neodateText != neodate.innerText) neodate.innerText = neodateText;
 }
 
