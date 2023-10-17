@@ -5,7 +5,7 @@ const secondsPerRevolution = 31_557_556;
 const secondsPerQuarter = secondsPerRevolution / 4;
 
 const tickInterval = 8;
-const binaryClock = document.querySelector('.binary-clock');
+const clock = document.querySelector('.binary-clock');
 const neodate = document.querySelector('.neodate');
 
 let selectedMenuItem = null;
@@ -126,8 +126,8 @@ function onKeyDown(e) {
 function tick() {
 	const now = Date.now() / 1000 - epoch;
 
-	const binaryClockText = Math.floor(now).toString(2);
-	if (binaryClockText != binaryClock.innerText) binaryClock.innerText = binaryClockText;
+	const clockText = toBase(Math.floor(now), Math.E);
+	if (clockText != clock.innerText) clock.innerText = clockText;
 
 	tickNeodate(now);
 }
@@ -149,6 +149,17 @@ function tickNeodate(now) {
 
 	const neodateText = `${timeOfDay} ${rotationOfQuarter}R/${quarterOfRevolution}Q/R${revolution + 1}`;
 	if (neodateText != neodate.innerText) neodate.innerText = neodateText;
+}
+
+function toBase(n, b) {
+	let s = '';
+	while (n > b) {
+		const d = Math.floor(n % b);
+		s = d + s;
+		n = Math.floor(n / b);
+	}
+
+	return s;
 }
 
 function updateSelectedMenuItem() {
