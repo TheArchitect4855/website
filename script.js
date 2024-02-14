@@ -5,33 +5,36 @@ const secondsPerRevolution = 31_557_556;
 const secondsPerQuarter = secondsPerRevolution / 4;
 
 const tickInterval = 8;
-const clock = document.querySelector('.binary-clock');
-const neodate = document.querySelector('.neodate');
+const neodate = document.querySelector(".neodate");
 
 let selectedMenuItem = null;
 updateSelectedMenuItem();
 
 animateText();
 
-const sections = document.querySelectorAll('section');
+const sections = document.querySelectorAll("section");
 for (let i = 0; i < sections.length; i += 1) {
-	const hash = '#' + sections[i].id;
-	if (window.location.hash == hash || (!window.location.hash && i == 0)) continue;
-	sections[i].style.display = 'none';
+	const hash = "#" + sections[i].id;
+	if (window.location.hash == hash || (!window.location.hash && i == 0))
+		continue;
+	sections[i].style.display = "none";
 }
 
-let lastHash = window.location.hash || '#' + sections[0].id;
-window.addEventListener('hashchange', onHashChanged);
-window.addEventListener('keydown', onKeyDown);
+let lastHash = window.location.hash || "#" + sections[0].id;
+window.addEventListener("hashchange", onHashChanged);
+window.addEventListener("keydown", onKeyDown);
 
-fetch('/blog.json').then((e) => e.json()).then(initBlogList).catch(console.error);
+fetch("/blog.json")
+	.then((e) => e.json())
+	.then(initBlogList)
+	.catch(console.error);
 
 function animateText() {
-	const animatedTextElems = document.querySelectorAll('.text-reveal');
+	const animatedTextElems = document.querySelectorAll(".text-reveal");
 	const fullText = [];
 	for (const txt of animatedTextElems) {
 		fullText.push(txt.innerText);
-		txt.innerHTML = '&nbsp;';
+		txt.innerHTML = "&nbsp;";
 	}
 
 	let interval;
@@ -49,7 +52,8 @@ function animateText() {
 		}
 
 		if (!any && max >= animatedTextElems.length) {
-			for (const t of animatedTextElems) t.className = t.className.replace('text-reveal', '');
+			for (const t of animatedTextElems)
+				t.className = t.className.replace("text-reveal", "");
 			clearInterval(interval);
 			setTimeout(initUi, 500);
 		}
@@ -61,33 +65,36 @@ function animateText() {
 }
 
 async function initBlogList(json) {
-	const content = document.querySelector('#blog>.content');
-	json.map((e) => fetch(`/blog/${e.id}`)
-		.then((req) => req.text())
-		.then((post) => {
-			const preview = document.createElement('div');
-			preview.innerHTML = post;
+	const content = document.querySelector("#blog>.content");
+	json.map((e) =>
+		fetch(`/blog/${e.id}`)
+			.then((req) => req.text())
+			.then((post) => {
+				const preview = document.createElement("div");
+				preview.innerHTML = post;
 
-			const previewText = preview.innerText;
-			if (previewText.length > 200) preview.innerText = previewText.substring(0, 197) + '...';
+				const previewText = preview.innerText;
+				if (previewText.length > 200)
+					preview.innerText = previewText.substring(0, 197) + "...";
 
-			const article = document.createElement('article');
-			article.innerHTML = `
+				const article = document.createElement("article");
+				article.innerHTML = `
 				<h3>${e.title}</h3>
 				<div>${preview.innerText}</div>
 				<a href="${window.origin}/blog?post=${encodeURIComponent(e.id)}">Read More</a>
 			`;
 
-			content.appendChild(article);
-		})
-		.catch(console.error)
+				content.appendChild(article);
+			})
+			.catch(console.error)
 	);
 }
 
 async function initMotd() {
-	const list = await fetch('/motd.json').then((e) => e.json());
-	const index = Math.floor(Date.now() / 1000 / secondsPerRotation) % list.length;
-	document.querySelector('#motd').innerText = list[index];
+	const list = await fetch("/motd.json").then((e) => e.json());
+	const index =
+		Math.floor(Date.now() / 1000 / secondsPerRotation) % list.length;
+	document.querySelector("#motd").innerText = list[index];
 }
 
 function initUi() {
@@ -99,12 +106,12 @@ function initUi() {
 function onHashChanged() {
 	if (lastHash) {
 		const elem = document.querySelector(lastHash);
-		if (elem) elem.style.display = 'none';
+		if (elem) elem.style.display = "none";
 	}
 
 	lastHash = window.location.hash;
 	const elem = document.querySelector(lastHash);
-	if (elem) elem.style.display = 'block';
+	if (elem) elem.style.display = "block";
 	updateSelectedMenuItem();
 }
 
@@ -112,12 +119,14 @@ function onKeyDown(e) {
 	let next;
 	if (e.keyCode == 38) {
 		// Up
-		if (selectedMenuItem?.previousElementSibling) next = selectedMenuItem.previousElementSibling;
-		else next = document.querySelector('nav li:last-child');
+		if (selectedMenuItem?.previousElementSibling)
+			next = selectedMenuItem.previousElementSibling;
+		else next = document.querySelector("nav li:last-child");
 	} else if (e.keyCode == 40) {
 		// Down
-		if (selectedMenuItem?.nextElementSibling) next = selectedMenuItem.nextElementSibling;
-		else next = document.querySelector('nav li:first-child');
+		if (selectedMenuItem?.nextElementSibling)
+			next = selectedMenuItem.nextElementSibling;
+		else next = document.querySelector("nav li:first-child");
 	} else return;
 
 	window.location.hash = next.firstElementChild.hash;
@@ -125,10 +134,6 @@ function onKeyDown(e) {
 
 function tick() {
 	const now = Date.now() / 1000 - epoch;
-
-	const clockText = toBase(Math.floor(now), Math.E);
-	if (clockText != clock.innerText) clock.innerText = clockText;
-
 	tickNeodate(now);
 }
 
