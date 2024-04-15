@@ -54,6 +54,14 @@
 		}
 	}
 
+	@media (prefers-color-scheme: light) {
+		:global(html) {
+			--color-highlight: #a00;
+			--color-surface: #eee;
+			--color-on-surface: #111;
+		}
+	}
+
 	:global(a) {
 		color: var(--color-highlight);
 	}
