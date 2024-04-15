@@ -1,0 +1,37 @@
+[
+	{
+		"name": "Gravity Box",
+		"description": "A game about shooting lots of bad guys... In a box with no gravity!",
+		"link": "https://ubcovgdc.itch.io/gravity-box"
+	},
+	{
+		"name": "Alchemy",
+		"description": "A social app for neurodiverse people (client application).",
+		"link": "https://github.com/TheArchitect4855/alchemy-client"
+	},
+	{
+		"name": "DMBot",
+		"description": "A Discord bot for playing DnD.",
+		"link": "https://github.com/Carson-Bay/DMBot"
+	},
+	{
+		"name": "ksearch",
+		"description": "A toy search engine.",
+		"link": "https://github.com/TheArchitect4855/ksearch"
+	},
+	{
+		"name": "memcache",
+		"description": "A super simple embedded in-memory cache.",
+		"link": "https://github.com/TheArchitect4855/memcache"
+	},
+	{
+		"name": "voxelizer-rs",
+		"description": "A Rust port of karimnaaji's C Voxelizer.",
+		"link": "https://github.com/TheArchitect4855/voxelizer-rs"
+	},
+	{
+		"name": "Neighbourhood",
+		"description": "A social media experiment.",
+		"link": "https://github.com/TheArchitect4855/neighbourhood"
+	}
+]
